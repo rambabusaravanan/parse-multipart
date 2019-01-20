@@ -38,6 +38,9 @@ exports.Parse = function(multipartBodyBuffer,boundary){
 		var contentType = part.info.split(':')[1].trim();		
 		Object.defineProperty( file , 'type' , 
 			{ value: contentType, writable: true, enumerable: true, configurable: true })
+		var name = obj(header[1])['name'];
+		Object.defineProperty( file , 'name' , 
+			{ value: name, writable: true, enumerable: true, configurable: true })
 		Object.defineProperty( file , 'data' , 
 			{ value: new Buffer(part.part), writable: true, enumerable: true, configurable: true })
 		return file;
